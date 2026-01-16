@@ -1,0 +1,4 @@
+[submodule "lambda-functions"]
+	path = lambda-functions
+	url = https://github.com/your-org/ProjectL-lambda-functions.git
+	branch = main

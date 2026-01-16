@@ -1,0 +1,12 @@
+{
+  "name": "processor1",
+  "version": "1.0.0",
+  "description": "SQS Processor 1 (Node.js)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.0.0"
+  }
+}

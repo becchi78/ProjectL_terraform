@@ -1,0 +1,40 @@
+# Terraform
+*.tfstate
+*.tfstate.*
+*.tfplan
+.terraform/
+.terraform.lock.hcl
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# tfvars (機密情報を含む可能性あり)
+*.tfvars
+!*.tfvars.example
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Lambda build artifacts
+lambda-functions/**/*.zip
+lambda-functions/**/node_modules/
+lambda-functions/**/__pycache__/
+lambda-functions/**/*.pyc
+
+# Terraform provider binaries (too large for GitHub, distribute separately)
+terraform-local/providers/
+terraform-local/binary/

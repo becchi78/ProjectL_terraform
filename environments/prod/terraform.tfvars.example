@@ -1,0 +1,62 @@
+# -----------------------------------------------------------------------------
+# prod環境 変数値 (サンプル)
+# このファイルをterraform.tfvarsにコピーして実際の値を設定してください
+# -----------------------------------------------------------------------------
+
+# 基本情報
+environment = "prod"
+region      = "ap-northeast-1"
+
+# ネットワーク
+vpc_id                    = "vpc-xxxxxxxxx"
+vpc_cidr                  = "10.0.0.0/16"
+worker_node_subnet_ids    = ["subnet-xxxxxxxx", "subnet-yyyyyyyy"]
+lambda_subnet_cidrs       = ["10.0.10.0/24", "10.0.11.0/24"]
+vpc_endpoint_subnet_cidrs = ["10.0.20.0/24", "10.0.21.0/24"]
+private_route_table_ids   = ["rtb-xxxxxxxx", "rtb-yyyyyyyy"]
+
+# Aurora
+aurora_cluster_id  = "projectl-aurora-cluster"
+aurora_sg_id       = "sg-xxxxxxxxx"
+aurora_secret_name = "lnkr-prod-aurora"
+aurora_port        = 5432
+
+# ROSA
+worker_node_sg_id     = "sg-xxxxxxxxx"
+rosa_pod_iam_role_arn = "arn:aws:iam::123456789012:role/ProjectL-rosa-pod-role"
+
+# Lambda関数定義
+lambda_functions = {
+  processor1 = {
+    runtime     = "nodejs20.x"
+    handler     = "index.handler"
+    source_dir  = "lambda-functions/processor1"
+    memory_size = 128
+    timeout     = 30
+    description = "SQS processor 1 (Node.js)"
+  }
+  processor2 = {
+    runtime     = "python3.12"
+    handler     = "lambda_function.lambda_handler"
+    source_dir  = "lambda-functions/processor2"
+    memory_size = 256
+    timeout     = 60
+    description = "SQS processor 2 (Python)"
+  }
+}
+
+# SQS設定
+sqs_message_retention_seconds  = 345600 # 4 days
+sqs_visibility_timeout_seconds = 30
+sqs_max_receive_count          = 3
+
+# SQS Event Source Mapping設定
+sqs_batch_size          = 10
+sqs_maximum_concurrency = 10
+
+# CloudWatch
+cloudwatch_logs_retention_days = 90 # 本番環境は長めに保持
+
+# S3 (Lambda出力用)
+s3_lambda_output_versioning_enabled = true # 本番環境はバージョニング有効化推奨
+s3_lambda_output_lifecycle_rules    = []
