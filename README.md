@@ -49,10 +49,10 @@ ProjectL_Terraform/
 - AWS Provider 6.27.0
 - 既存リソース:
   - VPC
-  - Worker Nodeサブネット
-  - Aurora Cluster
-  - Worker Node Security Group
+  - プライベートルートテーブル
   - Aurora Security Group
+  - Worker Node Security Group
+  - ROSA Pod IAM Role
 
 ## バージョン情報
 
@@ -221,8 +221,8 @@ terraform output sqs_endpoint_sg_id
 |----------|----------|
 | S3 Bucket (tfstate) | `projectl-{env}-terraform-tfstate` |
 | S3 Bucket (Lambda出力) | `projectl-{env}-lambda-output` |
-| Subnet (Lambda) | `projectl-{env}-subnet-lambda-{idx}` |
-| Subnet (VPC Endpoint) | `projectl-{env}-subnet-vpc-endpoint-{idx}` |
+| Subnet (Lambda) | `projectl-{env}-lambda-{idx}-{az-name}` |
+| Subnet (VPC Endpoint) | `projectl-{env}-vpc-endpoint-{idx}-{az-name}` |
 | SQS Queue | `projectl-{env}-sqs-{function-name}` |
 | DLQ | `projectl-{env}-sqs-{function-name}-dlq` |
 | Lambda Function | `projectl-{env}-lambda-{function-name}` |
