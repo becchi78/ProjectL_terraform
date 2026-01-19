@@ -51,7 +51,7 @@ python -c "from lambda_function import lambda_handler; lambda_handler({'Records'
 
 | 変数名 | 説明 |
 |--------|------|
-| AURORA_SECRET_NAME | Aurora接続情報を格納したSecrets Manager Secret名 |
+| SECRETS_NAME | Lambda関数の環境変数を格納したSecrets Manager Secret名 |
 
 ## 注意事項
 

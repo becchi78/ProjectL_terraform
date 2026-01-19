@@ -181,7 +181,7 @@ ProjectL-terraform/
 ```hcl
 environment {
   variables = {
-    AURORA_SECRET_NAME = var.aurora_secret_name  # 環境ごとに異なる
+    SECRETS_NAME = var.lambda_secrets_name  # 環境ごとに異なる
     # その他の環境変数はvariables.tfで追加可能
   }
 }
@@ -191,10 +191,10 @@ environment {
 
 - **Extension**: AWS Parameters and Secrets Lambda Extension
 - **Secret 名**:
-  - dev: `lnkr-dev-aurora` (仮置き)
-  - stg: `lnkr-stg-aurora` (仮置き)
-  - prod: `lnkr-prod-aurora` (仮置き)
-- **参照方法**: 環境変数 `AURORA_SECRET_NAME` から取得
+  - dev: `projectl-dev-lambda-secrets`
+  - stg: `projectl-stg-lambda-secrets`
+  - prod: `projectl-prod-lambda-secrets`
+- **参照方法**: 環境変数 `SECRETS_NAME` から取得
 - **IAM 権限**: Lambda 実行ロールに `secretsmanager:GetSecretValue` 付与
 
 #### SQS トリガー
@@ -315,9 +315,10 @@ lambda_subnet_cidrs       = ["10.0.10.0/24", "10.0.11.0/24"]
 sqs_endpoint_subnet_cidrs = ["10.0.20.0/24", "10.0.21.0/24"]
 
 # Aurora
-aurora_cluster_id  = "ProjectL-aurora-cluster"
-aurora_sg_id       = "sg-xxxxxxxxx"
-aurora_secret_name = "lnkr-dev-aurora"
+aurora_sg_id = "sg-xxxxxxxxx"
+
+# Lambda
+lambda_secrets_name = "projectl-dev-lambda-secrets"
 
 # ROSA
 worker_node_sg_id     = "sg-xxxxxxxxx"

@@ -128,17 +128,6 @@ module "sqs_endpoint_sg" {
   tags = local.common_tags
 }
 
-# Aurora SGにLambdaからのアクセスを許可
-resource "aws_security_group_rule" "aurora_from_lambda" {
-  type                     = "ingress"
-  from_port                = var.aurora_port
-  to_port                  = var.aurora_port
-  protocol                 = "tcp"
-  security_group_id        = var.aurora_sg_id
-  source_security_group_id = module.lambda_sg.security_group_id
-  description              = "Lambda access to Aurora"
-}
-
 # -----------------------------------------------------------------------------
 # IAM Role - Lambda実行ロール
 # -----------------------------------------------------------------------------
@@ -160,7 +149,7 @@ module "lambda_execution_role" {
       actions = [
         "secretsmanager:GetSecretValue"
       ]
-      resources = [data.aws_secretsmanager_secret.aurora.arn]
+      resources = [for secret in data.aws_secretsmanager_secret.lambda : secret.arn]
     },
     {
       sid = "SQSAccess"
@@ -197,6 +186,25 @@ module "lambda_execution_role" {
   ]
 
   tags = local.common_tags
+}
+
+# -----------------------------------------------------------------------------
+# KMS Key (SQS暗号化用)
+# -----------------------------------------------------------------------------
+
+resource "aws_kms_key" "sqs" {
+  description             = var.kms_key_description
+  deletion_window_in_days = var.kms_key_deletion_window_in_days
+  enable_key_rotation     = var.kms_key_enable_rotation
+
+  tags = merge(local.common_tags, {
+    Name = "${local.name_prefix}-sqs-kms-key"
+  })
+}
+
+resource "aws_kms_alias" "sqs" {
+  name          = "alias/${local.name_prefix}-sqs"
+  target_key_id = aws_kms_key.sqs.key_id
 }
 
 # -----------------------------------------------------------------------------
@@ -273,6 +281,9 @@ module "sqs" {
   message_retention_seconds  = var.sqs_message_retention_seconds
   visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
   max_receive_count          = var.sqs_max_receive_count
+
+  # KMS暗号化設定
+  kms_master_key_id = aws_kms_key.sqs.id
 
   # キューポリシー
   queue_policy = jsonencode({
@@ -390,7 +401,7 @@ module "lambda" {
   lambda_role_arn        = module.lambda_execution_role.role_arn
 
   environment_variables = {
-    AURORA_SECRET_NAME    = var.aurora_secret_name
+    SECRETS_NAME          = each.value.secrets_name
     S3_OUTPUT_BUCKET_NAME = module.s3_lambda_output.bucket_name
   }
 

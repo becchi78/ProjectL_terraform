@@ -61,6 +61,19 @@ variable "queue_policy" {
   default     = null
 }
 
+# KMS暗号化設定
+variable "kms_master_key_id" {
+  description = "SQSキュー暗号化用のKMS Key ID。nullの場合はKMS暗号化を無効化"
+  type        = string
+  default     = null
+}
+
+variable "kms_data_key_reuse_period_seconds" {
+  description = "KMSデータキーの再利用期間 (秒)"
+  type        = number
+  default     = 300
+}
+
 variable "tags" {
   description = "リソースに付与するタグ"
   type        = map(string)

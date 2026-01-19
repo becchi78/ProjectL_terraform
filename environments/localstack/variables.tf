@@ -18,12 +18,13 @@ variable "region" {
 variable "lambda_functions" {
   description = "Lambda関数の定義マップ"
   type = map(object({
-    runtime     = string
-    handler     = string
-    source_dir  = string
-    memory_size = optional(number, 128)
-    timeout     = optional(number, 30)
-    description = optional(string, "")
+    runtime      = string
+    handler      = string
+    source_dir   = string
+    memory_size  = optional(number, 128)
+    timeout      = optional(number, 30)
+    description  = optional(string, "")
+    secrets_name = optional(string, "localstack-lambda-secrets")  # LocalStackではデフォルト値を設定
   }))
 }
 

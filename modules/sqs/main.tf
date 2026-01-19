@@ -11,6 +11,10 @@ module "dlq" {
 
   message_retention_seconds = var.dlq_message_retention_seconds
 
+  # KMS暗号化設定
+  kms_master_key_id                 = var.kms_master_key_id
+  kms_data_key_reuse_period_seconds = var.kms_data_key_reuse_period_seconds
+
   tags = var.tags
 }
 
@@ -28,6 +32,10 @@ module "sqs" {
     deadLetterTargetArn = module.dlq[0].queue_arn
     maxReceiveCount     = var.max_receive_count
   }) : null
+
+  # KMS暗号化設定
+  kms_master_key_id                 = var.kms_master_key_id
+  kms_data_key_reuse_period_seconds = var.kms_data_key_reuse_period_seconds
 
   tags = var.tags
 }

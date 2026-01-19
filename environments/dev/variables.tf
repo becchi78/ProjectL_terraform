@@ -30,11 +30,6 @@ variable "vpc_cidr" {
   type        = string
 }
 
-variable "worker_node_subnet_ids" {
-  description = "Worker Node用サブネットIDのリスト"
-  type        = list(string)
-}
-
 variable "lambda_subnet_cidrs" {
   description = "Lambda用サブネットのCIDRリスト"
   type        = list(string)
@@ -51,18 +46,8 @@ variable "private_route_table_ids" {
 }
 
 # Aurora
-variable "aurora_cluster_id" {
-  description = "Aurora ClusterのID"
-  type        = string
-}
-
 variable "aurora_sg_id" {
   description = "Aurora Security GroupのID"
-  type        = string
-}
-
-variable "aurora_secret_name" {
-  description = "Aurora接続情報を格納したSecrets Manager Secret名"
   type        = string
 }
 
@@ -87,12 +72,13 @@ variable "rosa_pod_iam_role_arn" {
 variable "lambda_functions" {
   description = "Lambda関数の定義マップ"
   type = map(object({
-    runtime     = string
-    handler     = string
-    source_dir  = string
-    memory_size = optional(number, 128)
-    timeout     = optional(number, 30)
-    description = optional(string, "")
+    runtime      = string
+    handler      = string
+    source_dir   = string
+    memory_size  = optional(number, 128)
+    timeout      = optional(number, 30)
+    description  = optional(string, "")
+    secrets_name = string  # Lambda関数ごとのSecrets Manager Secret名
   }))
 }
 
@@ -113,6 +99,30 @@ variable "sqs_max_receive_count" {
   description = "DLQへ移動する前の最大受信回数"
   type        = number
   default     = 3
+}
+
+# KMS (SQS暗号化用)
+variable "kms_key_deletion_window_in_days" {
+  description = "KMSキー削除待機期間 (日)"
+  type        = number
+  default     = 30
+
+  validation {
+    condition     = var.kms_key_deletion_window_in_days >= 7 && var.kms_key_deletion_window_in_days <= 30
+    error_message = "KMSキー削除待機期間は7日から30日の間である必要があります。"
+  }
+}
+
+variable "kms_key_enable_rotation" {
+  description = "KMSキーの自動ローテーションを有効にするかどうか"
+  type        = bool
+  default     = true
+}
+
+variable "kms_key_description" {
+  description = "KMSキーの説明"
+  type        = string
+  default     = "KMS key for SQS encryption"
 }
 
 # SQS Event Source Mapping設定

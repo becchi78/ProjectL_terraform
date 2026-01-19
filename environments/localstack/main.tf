@@ -147,7 +147,7 @@ resource "aws_lambda_function" "main" {
 
   environment {
     variables = {
-      AURORA_SECRET_NAME    = "localstack-aurora-secret"
+      SECRETS_NAME          = "localstack-lambda-secrets"
       S3_OUTPUT_BUCKET_NAME = aws_s3_bucket.lambda_output.bucket
     }
   }

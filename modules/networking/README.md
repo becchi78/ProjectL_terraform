@@ -1,12 +1,12 @@
 # networking モジュール
 
-Lambda用サブネットとSQS Endpoint用サブネットを作成します。
+プライベートサブネットを作成します。
 
 ## 機能
 
-- Lambda用プライベートサブネット (Multi-AZ)
-- SQS VPC Endpoint用プライベートサブネット (Multi-AZ)
-- 既存プライベートルートテーブルへの関連付け
+- プライベートサブネット作成 (Multi-AZ)
+- 柔軟なサブネット定義 (map形式)
+- ルートテーブルへの関連付け (オプション)
 
 ## 使用方法
 
@@ -16,10 +16,34 @@ module "networking" {
 
   vpc_id      = "vpc-xxxxxxxxx"
   name_prefix = "projectl-dev"
+  az_count    = 2
 
-  lambda_subnet_cidrs       = ["10.0.10.0/24", "10.0.11.0/24"]
-  sqs_endpoint_subnet_cidrs = ["10.0.20.0/24", "10.0.21.0/24"]
-  private_route_table_ids   = ["rtb-xxxxxxxx", "rtb-yyyyyyyy"]
+  # 用途別にサブネットを定義
+  subnets = {
+    "lambda-0" = {
+      cidr_block = "10.0.100.0/24"
+      az_index   = 0
+      tags       = { Type = "Lambda" }
+    }
+    "lambda-1" = {
+      cidr_block = "10.0.101.0/24"
+      az_index   = 1
+      tags       = { Type = "Lambda" }
+    }
+    "endpoint-0" = {
+      cidr_block = "10.0.110.0/24"
+      az_index   = 0
+      tags       = { Type = "Endpoint" }
+    }
+    "endpoint-1" = {
+      cidr_block = "10.0.111.0/24"
+      az_index   = 1
+      tags       = { Type = "Endpoint" }
+    }
+  }
+
+  # ルートテーブル関連付け (オプション)
+  route_table_id = "rtb-xxxxxxxx"
 
   tags = {
     Project     = "ProjectL"
@@ -31,23 +55,20 @@ module "networking" {
 
 ## 入力変数
 
-| 名前 | 説明 | 型 | 必須 |
-|------|------|------|------|
-| vpc_id | VPC ID | string | Yes |
-| name_prefix | リソース名のプレフィックス | string | Yes |
-| lambda_subnet_cidrs | Lambda用サブネットのCIDRリスト | list(string) | Yes |
-| sqs_endpoint_subnet_cidrs | SQS Endpoint用サブネットのCIDRリスト | list(string) | Yes |
-| private_route_table_ids | プライベートルートテーブルIDのリスト | list(string) | Yes |
-| tags | リソースに付与するタグ | map(string) | No |
+| 名前 | 説明 | 型 | 必須 | デフォルト |
+|------|------|------|------|------------|
+| vpc_id | VPC ID | string | Yes | - |
+| name_prefix | リソース名のプレフィックス | string | Yes | - |
+| az_count | 使用するアベイラビリティゾーンの数 | number | No | 2 |
+| subnets | サブネット定義のマップ | map(object) | No | {} |
+| route_table_id | 関連付けるルートテーブルID | string | No | "" |
+| tags | リソースに付与するタグ | map(string) | No | {} |
 
 ## 出力値
 
 | 名前 | 説明 |
 |------|------|
-| lambda_subnet_ids | Lambda用サブネットのIDリスト |
-| lambda_subnet_arns | Lambda用サブネットのARNリスト |
-| lambda_subnet_cidrs | Lambda用サブネットのCIDRリスト |
-| sqs_endpoint_subnet_ids | SQS Endpoint用サブネットのIDリスト |
-| sqs_endpoint_subnet_arns | SQS Endpoint用サブネットのARNリスト |
-| sqs_endpoint_subnet_cidrs | SQS Endpoint用サブネットのCIDRリスト |
+| subnet_ids | 作成されたサブネットのIDマップ |
+| subnet_arns | 作成されたサブネットのARNマップ |
+| subnet_cidrs | 作成されたサブネットのCIDRマップ |
 | availability_zones | 使用しているアベイラビリティゾーン |
