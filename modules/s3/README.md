@@ -95,7 +95,8 @@ module "s3_shared" {
 |------|------|------|------|------------|
 | bucket_name | S3バケット名 | string | Yes | - |
 | versioning_enabled | バージョニング有効化 | bool | No | false |
-| bucket_policy | S3バケットポリシー (JSON文字列) | string | No | null |
+| encryption_configuration | サーバーサイド暗号化の設定 | any | No | AES256 |
+| bucket_policy | S3バケットポリシー (JSON文字列) | string | Yes | - |
 | lifecycle_rules | ライフサイクルルール | any | No | [] |
 | tags | リソースに付与するタグ | map(string) | No | {} |
 

@@ -77,6 +77,8 @@ module "sqs_with_policy" {
 | max_receive_count | DLQへ移動する前の最大受信回数 | number | No | 3 |
 | dlq_message_retention_seconds | DLQのメッセージ保持期間 (秒) | number | No | 1209600 |
 | queue_policy | SQSキューポリシー (JSON文字列) | string | No | null |
+| kms_master_key_id | SQSキュー暗号化用のKMS Key ID | string | No | null |
+| kms_data_key_reuse_period_seconds | KMSデータキーの再利用期間 (秒) | number | No | 300 |
 | tags | リソースに付与するタグ | map(string) | No | {} |
 
 ## 出力値
