@@ -78,7 +78,7 @@ variable "lambda_functions" {
     memory_size  = optional(number, 128)
     timeout      = optional(number, 30)
     description  = optional(string, "")
-    secrets_name = string  # Lambda関数ごとのSecrets Manager Secret名
+    secrets_name = string # Lambda関数ごとのSecrets Manager Secret名
   }))
 }
 

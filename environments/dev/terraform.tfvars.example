@@ -8,58 +8,56 @@ environment = "dev"
 region      = "ap-northeast-1"
 
 # ネットワーク
-vpc_id                    = "vpc-xxxxxxxxx"
-vpc_cidr                  = "10.0.0.0/16"
-lambda_subnet_cidrs       = ["10.0.10.0/24", "10.0.11.0/24"]
-vpc_endpoint_subnet_cidrs = ["10.0.20.0/24", "10.0.21.0/24"]
-private_route_table_ids   = ["rtb-xxxxxxxx", "rtb-yyyyyyyy"]
+vpc_id                    = "vpc-0feb3234ab2cc725e"
+vpc_cidr                  = "10.2.0.0/16"
+lambda_subnet_cidrs       = ["10.2.70.0/24", "10.2.71.0/24","10.2.72.0/24"]
+vpc_endpoint_subnet_cidrs = ["10.2.67.0/24", "10.2.68.0/24","10.2.69.0/24"]
+private_route_table_ids   = ["rtb-0158688ea5ef920f5"]
 
 # Aurora
-aurora_sg_id = "sg-xxxxxxxxx"
+aurora_sg_id = "sg-026717ec7c079bed6"
 aurora_port  = 5432
 
 # ROSA
-worker_node_sg_id     = "sg-xxxxxxxxx"
+worker_node_sg_id     = "sg-0c084869ee28a5305"
 rosa_pod_iam_role_arn = "arn:aws:iam::123456789012:role/ProjectL-rosa-pod-role"
 
-# Lambda関数定義
-lambda_functions = {
-  processor1 = {
-    runtime      = "nodejs20.x"
-    handler      = "index.handler"
-    source_dir   = "lambda-functions/processor1"
-    memory_size  = 128
-    timeout      = 30
-    description  = "SQS processor 1 (Node.js)"
-    secrets_name = "projectl-dev-processor1-secrets"
-  }
-  processor2 = {
-    runtime      = "python3.12"
-    handler      = "lambda_function.lambda_handler"
-    source_dir   = "lambda-functions/processor2"
-    memory_size  = 256
-    timeout      = 60
-    description  = "SQS processor 2 (Python)"
-    secrets_name = "projectl-dev-processor2-secrets"
-  }
-}
+# Processor1設定
+processor1_secrets_name = "projectl-dev-processor1-secrets"
+# デフォルト値を使用する場合は以下をコメントアウト
+# processor1_runtime                        = "nodejs20.x"
+# processor1_handler                        = "index.handler"
+# processor1_source_dir                     = "lambda-functions/processor1"
+# processor1_memory_size                    = 128
+# processor1_timeout                        = 30
+# processor1_description                    = "SQS processor 1 (Node.js)"
+# processor1_sqs_message_retention_seconds  = 345600
+# processor1_sqs_visibility_timeout_seconds = 30
+# processor1_sqs_max_receive_count          = 3
+# processor1_sqs_batch_size                 = 10
+# processor1_sqs_maximum_concurrency        = 10
+# processor1_cloudwatch_logs_retention_days = 30
 
-# SQS設定
-sqs_message_retention_seconds  = 345600 # 4 days
-sqs_visibility_timeout_seconds = 30
-sqs_max_receive_count          = 3
+# Processor2設定
+processor2_secrets_name = "projectl-dev-processor2-secrets"
+# デフォルト値を使用する場合は以下をコメントアウト
+# processor2_runtime                        = "python3.9"
+# processor2_handler                        = "lambda_function.lambda_handler"
+# processor2_source_dir                     = "lambda-functions/processor2"
+# processor2_memory_size                    = 256
+# processor2_timeout                        = 60
+# processor2_description                    = "SQS processor 2 (Python)"
+# processor2_sqs_message_retention_seconds  = 345600
+# processor2_sqs_visibility_timeout_seconds = 30
+# processor2_sqs_max_receive_count          = 3
+# processor2_sqs_batch_size                 = 10
+# processor2_sqs_maximum_concurrency        = 10
+# processor2_cloudwatch_logs_retention_days = 30
 
 # KMS (SQS暗号化用)
 kms_key_deletion_window_in_days = 30
 kms_key_enable_rotation         = true
 kms_key_description             = "KMS key for SQS encryption"
-
-# SQS Event Source Mapping設定
-sqs_batch_size          = 10
-sqs_maximum_concurrency = 10
-
-# CloudWatch
-cloudwatch_logs_retention_days = 30
 
 # S3 (Lambda出力用)
 s3_lambda_output_versioning_enabled = false

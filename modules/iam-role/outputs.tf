@@ -4,15 +4,15 @@
 
 output "role_arn" {
   description = "IAMロールのARN"
-  value       = module.this.iam_role_arn
+  value       = module.this.arn
 }
 
 output "role_name" {
   description = "IAMロールの名前"
-  value       = module.this.iam_role_name
+  value       = module.this.name
 }
 
 output "role_id" {
   description = "IAMロールのID"
-  value       = module.this.iam_role_unique_id
+  value       = module.this.unique_id
 }

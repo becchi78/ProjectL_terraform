@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 module "this" {
-  source = "../../../terraform-local/modules/security_group"
+  source = "../../terraform-local/modules/security_group"
 
   name        = var.name
   description = var.description

@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 module "s3_bucket" {
-  source = "../../../terraform-local/modules/s3_bucket"
+  source = "../../terraform-local/modules/s3_bucket"
 
   bucket = var.bucket_name
 

@@ -3,7 +3,7 @@
 # -----------------------------------------------------------------------------
 
 module "lambda" {
-  source = "../../../terraform-local/modules/lambda_function"
+  source = "../../terraform-local/modules/lambda_function"
 
   function_name = var.function_name
   description   = var.description
@@ -51,15 +51,4 @@ resource "aws_lambda_event_source_mapping" "sqs" {
       maximum_concurrency = var.sqs_event_source.maximum_concurrency
     }
   }
-}
-
-# CloudWatch Log Group (オプション)
-module "cloudwatch_log_group" {
-  source = "../../../terraform-local/modules/cloudwatch"
-  count  = var.create_cloudwatch_log_group ? 1 : 0
-
-  name              = "/aws/lambda/${var.function_name}"
-  retention_in_days = var.cloudwatch_logs_retention_days
-
-  tags = var.tags
 }

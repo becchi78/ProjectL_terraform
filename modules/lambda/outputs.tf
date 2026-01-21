@@ -29,12 +29,12 @@ output "function_version" {
 
 output "log_group_name" {
   description = "CloudWatch Logグループ名"
-  value       = var.create_cloudwatch_log_group ? module.cloudwatch_log_group[0].cloudwatch_log_group_name : null
+  value       = module.lambda.lambda_cloudwatch_log_group_name
 }
 
 output "log_group_arn" {
   description = "CloudWatch LogグループのARN"
-  value       = var.create_cloudwatch_log_group ? module.cloudwatch_log_group[0].cloudwatch_log_group_arn : null
+  value       = module.lambda.lambda_cloudwatch_log_group_arn
 }
 
 output "event_source_mapping_uuid" {
