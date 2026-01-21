@@ -4,7 +4,7 @@
 
 # Dead Letter Queue (オプション)
 module "dlq" {
-  source = "../../../terraform-local/modules/sqs"
+  source = "../../terraform-local/modules/sqs"
   count  = var.create_dlq ? 1 : 0
 
   name = "${var.queue_name}-dlq"
@@ -20,7 +20,7 @@ module "dlq" {
 
 # メインキュー
 module "sqs" {
-  source = "../../../terraform-local/modules/sqs"
+  source = "../../terraform-local/modules/sqs"
 
   name = var.queue_name
 
@@ -28,10 +28,10 @@ module "sqs" {
   visibility_timeout_seconds = var.visibility_timeout_seconds
 
   # Dead Letter Queue設定 (オプション)
-  redrive_policy = var.create_dlq ? jsonencode({
+  redrive_policy = var.create_dlq ? {
     deadLetterTargetArn = module.dlq[0].queue_arn
     maxReceiveCount     = var.max_receive_count
-  }) : null
+  } : null
 
   # KMS暗号化設定
   kms_master_key_id                 = var.kms_master_key_id

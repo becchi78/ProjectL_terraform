@@ -35,6 +35,9 @@ lambda-functions/**/node_modules/
 lambda-functions/**/__pycache__/
 lambda-functions/**/*.pyc
 
+# Terraform builds directory (Lambda zip files and plan outputs)
+environments/**/builds/
+
 # Terraform provider binaries (too large for GitHub, distribute separately)
 terraform-local/providers/
 terraform-local/binary/

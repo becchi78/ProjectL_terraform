@@ -1,0 +1,37 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowROSAPodAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "sqs:SendMessage",
+        "sqs:GetQueueAttributes",
+        "sqs:GetQueueUrl"
+      ],
+      "Resource": "${sqs_resource_arn}",
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "${rosa_pod_iam_role_arn}"
+        }
+      }
+    },
+    {
+      "Sid": "AllowLambdaAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "sqs:ReceiveMessage",
+        "sqs:DeleteMessage",
+        "sqs:GetQueueAttributes"
+      ],
+      "Resource": "${sqs_resource_arn}",
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "${lambda_execution_role_arn}"
+        }
+      }
+    }
+  ]
+}

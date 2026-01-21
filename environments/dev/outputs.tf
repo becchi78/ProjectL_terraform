@@ -32,17 +32,26 @@ output "lambda_execution_role_arn" {
 # SQS
 output "sqs_queue_urls" {
   description = "SQSキューのURLマップ"
-  value       = { for k, v in module.sqs : k => v.queue_url }
+  value = {
+    processor1 = module.sqs_processor1.queue_url
+    processor2 = module.sqs_processor2.queue_url
+  }
 }
 
 output "sqs_queue_arns" {
   description = "SQSキューのARNマップ"
-  value       = { for k, v in module.sqs : k => v.queue_arn }
+  value = {
+    processor1 = module.sqs_processor1.queue_arn
+    processor2 = module.sqs_processor2.queue_arn
+  }
 }
 
 output "dlq_urls" {
   description = "DLQのURLマップ"
-  value       = { for k, v in module.sqs : k => v.dlq_url }
+  value = {
+    processor1 = module.sqs_processor1.dlq_url
+    processor2 = module.sqs_processor2.dlq_url
+  }
 }
 
 # VPC Endpoint
@@ -54,17 +63,26 @@ output "sqs_vpc_endpoint_id" {
 # Lambda
 output "lambda_function_arns" {
   description = "Lambda関数のARNマップ"
-  value       = { for k, v in module.lambda : k => v.function_arn }
+  value = {
+    processor1 = module.lambda_processor1.function_arn
+    processor2 = module.lambda_processor2.function_arn
+  }
 }
 
 output "lambda_function_names" {
   description = "Lambda関数名のマップ"
-  value       = { for k, v in module.lambda : k => v.function_name }
+  value = {
+    processor1 = module.lambda_processor1.function_name
+    processor2 = module.lambda_processor2.function_name
+  }
 }
 
 output "lambda_log_group_names" {
   description = "Lambda CloudWatch Logグループ名のマップ"
-  value       = { for k, v in module.lambda : k => v.log_group_name }
+  value = {
+    processor1 = module.lambda_processor1.log_group_name
+    processor2 = module.lambda_processor2.log_group_name
+  }
 }
 
 # S3 (Lambda出力用)

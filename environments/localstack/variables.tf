@@ -24,7 +24,7 @@ variable "lambda_functions" {
     memory_size  = optional(number, 128)
     timeout      = optional(number, 30)
     description  = optional(string, "")
-    secrets_name = optional(string, "localstack-lambda-secrets")  # LocalStackではデフォルト値を設定
+    secrets_name = optional(string, "localstack-lambda-secrets") # LocalStackではデフォルト値を設定
   }))
 }
 

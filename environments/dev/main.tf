@@ -11,6 +11,7 @@ module "lambda_subnets" {
 
   vpc_id      = var.vpc_id
   name_prefix = local.name_prefix
+  az_count    = 3
 
   subnets = {
     for idx, cidr in var.lambda_subnet_cidrs : "lambda-${idx}" => {
@@ -34,6 +35,7 @@ module "vpc_endpoint_subnets" {
 
   vpc_id      = var.vpc_id
   name_prefix = local.name_prefix
+  az_count    = 3
 
   subnets = {
     for idx, cidr in var.vpc_endpoint_subnet_cidrs : "vpc-endpoint-${idx}" => {
@@ -106,7 +108,7 @@ module "sqs_endpoint_sg" {
 
   ingress_with_source_security_group_id = [
     {
-      description              = "Worker Node access"
+      description              = "ROSA Worker Node to SQS Endpoint"
       from_port                = 443
       to_port                  = 443
       protocol                 = "tcp"
@@ -121,7 +123,7 @@ module "sqs_endpoint_sg" {
       to_port                  = 443
       protocol                 = "tcp"
       source_security_group_id = module.lambda_sg.security_group_id
-      description              = "Lambda access"
+      description              = "Lambda to SQS Endpoint"
     }
   }
 
@@ -149,7 +151,7 @@ module "lambda_execution_role" {
       actions = [
         "secretsmanager:GetSecretValue"
       ]
-      resources = [for secret in data.aws_secretsmanager_secret.lambda : secret.arn]
+      resources = ["arn:aws:secretsmanager:${var.region}:${data.aws_caller_identity.current.account_id}:secret:projectl-${var.environment}-*"]
     },
     {
       sid = "SQSAccess"
@@ -202,11 +204,6 @@ resource "aws_kms_key" "sqs" {
   })
 }
 
-resource "aws_kms_alias" "sqs" {
-  name          = "alias/${local.name_prefix}-sqs"
-  target_key_id = aws_kms_key.sqs.key_id
-}
-
 # -----------------------------------------------------------------------------
 # S3 Bucket (Lambda出力用)
 # -----------------------------------------------------------------------------
@@ -224,7 +221,7 @@ module "s3_lambda_output" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "AllowLambdaExecutionRoleOnly"
+        Sid    = "AllowLambdaExecutionRole"
         Effect = "Allow"
         Principal = {
           AWS = module.lambda_execution_role.role_arn
@@ -233,33 +230,13 @@ module "s3_lambda_output" {
           "s3:GetObject",
           "s3:PutObject",
           "s3:PutObjectAcl",
-          "s3:DeleteObject"
+          "s3:DeleteObject",
+          "s3:ListBucket"
         ]
-        Resource = "arn:aws:s3:::${local.name_prefix}-lambda-output/*"
-      },
-      {
-        Sid    = "AllowLambdaListBucket"
-        Effect = "Allow"
-        Principal = {
-          AWS = module.lambda_execution_role.role_arn
-        }
-        Action   = "s3:ListBucket"
-        Resource = "arn:aws:s3:::${local.name_prefix}-lambda-output"
-      },
-      {
-        Sid       = "DenyAllOthers"
-        Effect    = "Deny"
-        Principal = "*"
-        Action    = "s3:*"
         Resource = [
           "arn:aws:s3:::${local.name_prefix}-lambda-output",
           "arn:aws:s3:::${local.name_prefix}-lambda-output/*"
         ]
-        Condition = {
-          StringNotEquals = {
-            "aws:PrincipalArn" = module.lambda_execution_role.role_arn
-          }
-        }
       }
     ]
   })
@@ -269,53 +246,49 @@ module "s3_lambda_output" {
 
 # -----------------------------------------------------------------------------
 # SQS Queues
-# Lambda関数ごとにSQS + DLQを作成
 # -----------------------------------------------------------------------------
 
-module "sqs" {
-  source   = "../../modules/sqs"
-  for_each = var.lambda_functions
+# Processor1 SQS
+module "sqs_processor1" {
+  source = "../../modules/sqs"
 
-  queue_name = "${local.name_prefix}-sqs-${each.key}"
+  queue_name = "${local.name_prefix}-sqs-processor1"
 
-  message_retention_seconds  = var.sqs_message_retention_seconds
-  visibility_timeout_seconds = var.sqs_visibility_timeout_seconds
-  max_receive_count          = var.sqs_max_receive_count
+  message_retention_seconds  = var.processor1_sqs_message_retention_seconds
+  visibility_timeout_seconds = var.processor1_sqs_visibility_timeout_seconds
+  max_receive_count          = var.processor1_sqs_max_receive_count
 
   # KMS暗号化設定
   kms_master_key_id = aws_kms_key.sqs.id
 
   # キューポリシー
-  queue_policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid    = "AllowROSAPodAccess"
-        Effect = "Allow"
-        Principal = {
-          AWS = var.rosa_pod_iam_role_arn
-        }
-        Action = [
-          "sqs:SendMessage",
-          "sqs:GetQueueAttributes",
-          "sqs:GetQueueUrl"
-        ]
-        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-${each.key}"
-      },
-      {
-        Sid    = "AllowLambdaAccess"
-        Effect = "Allow"
-        Principal = {
-          AWS = module.lambda_execution_role.role_arn
-        }
-        Action = [
-          "sqs:ReceiveMessage",
-          "sqs:DeleteMessage",
-          "sqs:GetQueueAttributes"
-        ]
-        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-${each.key}"
-      }
-    ]
+  queue_policy = templatefile("${path.module}/policies/projectl-sqs-queue-policy-processor1.json", {
+    rosa_pod_iam_role_arn     = var.rosa_pod_iam_role_arn
+    lambda_execution_role_arn = module.lambda_execution_role.role_arn
+    queue_arn                 = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-processor1"
+  })
+
+  tags = local.common_tags
+}
+
+# Processor2 SQS
+module "sqs_processor2" {
+  source = "../../modules/sqs"
+
+  queue_name = "${local.name_prefix}-sqs-processor2"
+
+  message_retention_seconds  = var.processor2_sqs_message_retention_seconds
+  visibility_timeout_seconds = var.processor2_sqs_visibility_timeout_seconds
+  max_receive_count          = var.processor2_sqs_max_receive_count
+
+  # KMS暗号化設定
+  kms_master_key_id = aws_kms_key.sqs.id
+
+  # キューポリシー
+  queue_policy = templatefile("${path.module}/policies/projectl-sqs-queue-policy-processor2.json", {
+    rosa_pod_iam_role_arn     = var.rosa_pod_iam_role_arn
+    lambda_execution_role_arn = module.lambda_execution_role.role_arn
+    queue_arn                 = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-processor2"
   })
 
   tags = local.common_tags
@@ -338,42 +311,10 @@ module "sqs_vpc_endpoint" {
   private_dns_enabled = true
 
   # VPC Endpointポリシー
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Sid       = "AllowROSAPodAccess"
-        Effect    = "Allow"
-        Principal = "*"
-        Action = [
-          "sqs:SendMessage",
-          "sqs:GetQueueAttributes",
-          "sqs:GetQueueUrl"
-        ]
-        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-*"
-        Condition = {
-          ArnEquals = {
-            "aws:PrincipalArn" = var.rosa_pod_iam_role_arn
-          }
-        }
-      },
-      {
-        Sid       = "AllowLambdaAccess"
-        Effect    = "Allow"
-        Principal = "*"
-        Action = [
-          "sqs:ReceiveMessage",
-          "sqs:DeleteMessage",
-          "sqs:GetQueueAttributes"
-        ]
-        Resource = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-*"
-        Condition = {
-          ArnEquals = {
-            "aws:PrincipalArn" = module.lambda_execution_role.role_arn
-          }
-        }
-      }
-    ]
+  policy = templatefile("${path.module}/policies/projectl-sqs-vpc-endpoint-policy.json", {
+    rosa_pod_iam_role_arn     = var.rosa_pod_iam_role_arn
+    lambda_execution_role_arn = module.lambda_execution_role.role_arn
+    sqs_resource_arn          = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-*"
   })
 
   tags = local.common_tags
@@ -383,25 +324,25 @@ module "sqs_vpc_endpoint" {
 # Lambda Functions
 # -----------------------------------------------------------------------------
 
-module "lambda" {
-  source   = "../../modules/lambda"
-  for_each = var.lambda_functions
+# Processor1 Lambda
+module "lambda_processor1" {
+  source = "../../modules/lambda"
 
-  function_name = "${local.name_prefix}-lambda-${each.key}"
-  description   = each.value.description
+  function_name = "${local.name_prefix}-lambda-processor1"
+  description   = var.processor1_description
 
-  runtime     = each.value.runtime
-  handler     = each.value.handler
-  memory_size = each.value.memory_size
-  timeout     = each.value.timeout
-  source_path = "${path.root}/../../${each.value.source_dir}"
+  runtime     = var.processor1_runtime
+  handler     = var.processor1_handler
+  memory_size = var.processor1_memory_size
+  timeout     = var.processor1_timeout
+  source_path = "${path.root}/../../${var.processor1_source_dir}"
 
   vpc_subnet_ids         = values(module.lambda_subnets.subnet_ids)
   vpc_security_group_ids = [module.lambda_sg.security_group_id]
   lambda_role_arn        = module.lambda_execution_role.role_arn
 
   environment_variables = {
-    SECRETS_NAME          = each.value.secrets_name
+    SECRETS_NAME          = var.processor1_secrets_name
     S3_OUTPUT_BUCKET_NAME = module.s3_lambda_output.bucket_name
   }
 
@@ -412,12 +353,51 @@ module "lambda" {
 
   # SQS Event Source Mapping
   sqs_event_source = {
-    queue_arn           = module.sqs[each.key].queue_arn
-    batch_size          = var.sqs_batch_size
-    maximum_concurrency = var.sqs_maximum_concurrency
+    queue_arn           = module.sqs_processor1.queue_arn
+    batch_size          = var.processor1_sqs_batch_size
+    maximum_concurrency = var.processor1_sqs_maximum_concurrency
   }
 
-  cloudwatch_logs_retention_days = var.cloudwatch_logs_retention_days
+  cloudwatch_logs_retention_days = var.processor1_cloudwatch_logs_retention_days
+
+  tags = local.common_tags
+}
+
+# Processor2 Lambda
+module "lambda_processor2" {
+  source = "../../modules/lambda"
+
+  function_name = "${local.name_prefix}-lambda-processor2"
+  description   = var.processor2_description
+
+  runtime     = var.processor2_runtime
+  handler     = var.processor2_handler
+  memory_size = var.processor2_memory_size
+  timeout     = var.processor2_timeout
+  source_path = "${path.root}/../../${var.processor2_source_dir}"
+
+  vpc_subnet_ids         = values(module.lambda_subnets.subnet_ids)
+  vpc_security_group_ids = [module.lambda_sg.security_group_id]
+  lambda_role_arn        = module.lambda_execution_role.role_arn
+
+  environment_variables = {
+    SECRETS_NAME          = var.processor2_secrets_name
+    S3_OUTPUT_BUCKET_NAME = module.s3_lambda_output.bucket_name
+  }
+
+  # AWS Parameters and Secrets Lambda Extension
+  layers = [
+    "arn:aws:lambda:${var.region}:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12"
+  ]
+
+  # SQS Event Source Mapping
+  sqs_event_source = {
+    queue_arn           = module.sqs_processor2.queue_arn
+    batch_size          = var.processor2_sqs_batch_size
+    maximum_concurrency = var.processor2_sqs_maximum_concurrency
+  }
+
+  cloudwatch_logs_retention_days = var.processor2_cloudwatch_logs_retention_days
 
   tags = local.common_tags
 }

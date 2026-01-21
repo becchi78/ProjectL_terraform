@@ -109,12 +109,6 @@ variable "sqs_event_source" {
 }
 
 # CloudWatch
-variable "create_cloudwatch_log_group" {
-  description = "CloudWatch Log Groupを明示的に作成するかどうか"
-  type        = bool
-  default     = true
-}
-
 variable "cloudwatch_logs_retention_days" {
   description = "CloudWatch Logsの保持期間 (日)"
   type        = number
