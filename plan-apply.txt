@@ -1,0 +1,1479 @@
+[devuser@848ae3cb09f9 dev]$ terraform plan -out=plan.tfplan
+module.lambda_processor1.module.lambda.data.external.archive_prepare[0]: Reading...
+module.lambda_processor2.module.lambda.data.external.archive_prepare[0]: Reading...
+module.lambda_processor1.module.lambda.data.external.archive_prepare[0]: Read complete after 0s [id=-]
+module.lambda_processor2.module.lambda.data.external.archive_prepare[0]: Read complete after 0s [id=-]
+module.lambda_subnets.data.aws_availability_zones.available: Reading...
+data.aws_secretsmanager_secret.processor1: Reading...
+module.sqs_processor1.module.dlq[0].data.aws_region.current[0]: Reading...
+module.lambda_execution_role.module.this.data.aws_partition.current[0]: Reading...
+module.sqs_processor1.module.dlq[0].data.aws_partition.current[0]: Reading...
+module.sqs_processor2.module.dlq[0].data.aws_region.current[0]: Reading...
+module.sqs_processor1.module.dlq[0].data.aws_caller_identity.current[0]: Reading...
+module.sqs_processor2.module.dlq[0].data.aws_caller_identity.current[0]: Reading...
+module.lambda_processor1.module.lambda.data.aws_region.current: Reading...
+module.lambda_processor1.module.lambda.data.aws_region.current: Read complete after 0s [id=ap-northeast-1]
+module.sqs_processor1.module.dlq[0].data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.sqs_processor1.module.dlq[0].data.aws_region.current[0]: Read complete after 0s [id=ap-northeast-1]
+data.aws_secretsmanager_secret.processor2: Reading...
+module.lambda_processor1.module.lambda.data.aws_partition.current: Reading...
+module.lambda_execution_role.module.this.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.sqs_processor2.module.dlq[0].data.aws_region.current[0]: Read complete after 0s [id=ap-northeast-1]
+module.lambda_processor1.module.lambda.data.aws_partition.current: Read complete after 0s [id=aws]
+module.lambda_processor2.module.lambda.data.aws_partition.current: Reading...
+module.lambda_processor1.module.lambda.data.aws_caller_identity.current: Reading...
+module.vpc_endpoint_subnets.data.aws_availability_zones.available: Reading...
+module.lambda_processor2.module.lambda.data.aws_partition.current: Read complete after 0s [id=aws]
+module.lambda_processor2.module.lambda.data.aws_caller_identity.current: Reading...
+module.sqs_processor2.module.dlq[0].data.aws_partition.current[0]: Reading...
+module.sqs_processor1.module.sqs.data.aws_region.current[0]: Reading...
+module.sqs_processor1.module.sqs.data.aws_region.current[0]: Read complete after 0s [id=ap-northeast-1]
+module.sqs_processor2.module.dlq[0].data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.lambda_execution_role.module.this.data.aws_caller_identity.current[0]: Reading...
+module.s3_lambda_output.module.s3_bucket.data.aws_region.current: Reading...
+module.s3_lambda_output.module.s3_bucket.data.aws_region.current: Read complete after 0s [id=ap-northeast-1]
+module.sqs_processor2.module.dlq[0].data.aws_caller_identity.current[0]: Read complete after 0s [id=571634110936]
+module.sqs_processor1.module.sqs.data.aws_partition.current[0]: Reading...
+module.sqs_processor1.module.sqs.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.sqs_processor1.module.sqs.data.aws_caller_identity.current[0]: Reading...
+module.sqs_processor2.module.sqs.data.aws_caller_identity.current[0]: Reading...
+module.sqs_processor1.module.dlq[0].data.aws_caller_identity.current[0]: Read complete after 0s [id=571634110936]
+module.lambda_processor2.module.lambda.data.aws_region.current: Reading...
+module.lambda_processor2.module.lambda.data.aws_region.current: Read complete after 0s [id=ap-northeast-1]
+data.aws_caller_identity.current: Reading...
+module.lambda_processor1.module.lambda.data.aws_caller_identity.current: Read complete after 0s [id=571634110936]
+module.s3_lambda_output.module.s3_bucket.data.aws_partition.current: Reading...
+module.s3_lambda_output.module.s3_bucket.data.aws_partition.current: Read complete after 0s [id=aws]
+module.s3_lambda_output.module.s3_bucket.data.aws_caller_identity.current: Reading...
+module.lambda_processor2.module.lambda.data.aws_caller_identity.current: Read complete after 0s [id=571634110936]
+module.sqs_processor2.module.sqs.data.aws_region.current[0]: Reading...
+module.sqs_processor2.module.sqs.data.aws_region.current[0]: Read complete after 0s [id=ap-northeast-1]
+module.sqs_processor2.module.sqs.data.aws_caller_identity.current[0]: Read complete after 0s [id=571634110936]
+module.sqs_processor2.module.sqs.data.aws_partition.current[0]: Reading...
+module.sqs_processor2.module.sqs.data.aws_partition.current[0]: Read complete after 0s [id=aws]
+module.lambda_execution_role.module.this.data.aws_caller_identity.current[0]: Read complete after 0s [id=571634110936]
+module.sqs_processor1.module.sqs.data.aws_caller_identity.current[0]: Read complete after 0s [id=571634110936]
+data.aws_caller_identity.current: Read complete after 0s [id=571634110936]
+module.s3_lambda_output.module.s3_bucket.data.aws_caller_identity.current: Read complete after 0s [id=571634110936]
+module.lambda_execution_role.module.this.data.aws_iam_policy_document.this[0]: Reading...
+module.lambda_execution_role.module.this.data.aws_iam_policy_document.this[0]: Read complete after 0s [id=1454775447]
+data.aws_secretsmanager_secret.processor1: Read complete after 0s [id=arn:aws:secretsmanager:ap-northeast-1:571634110936:secret:projectl-dev-processor1-secrets-xyeVRb]
+data.aws_secretsmanager_secret.processor2: Read complete after 0s [id=arn:aws:secretsmanager:ap-northeast-1:571634110936:secret:projectl-dev-processor2-secrets-c3upMS]
+module.lambda_subnets.data.aws_availability_zones.available: Read complete after 0s [id=ap-northeast-1]
+module.vpc_endpoint_subnets.data.aws_availability_zones.available: Read complete after 0s [id=ap-northeast-1]
+
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+symbols:
+  + create
+ <= read (data resources)
+
+Terraform will perform the following actions:
+
+  # aws_kms_key.sqs will be created
+  + resource "aws_kms_key" "sqs" {
+      + arn                                = (known after apply)
+      + bypass_policy_lockout_safety_check = false
+      + customer_master_key_spec           = "SYMMETRIC_DEFAULT"
+      + deletion_window_in_days            = 30
+      + description                        = "KMS key for SQS encryption"
+      + enable_key_rotation                = true
+      + id                                 = (known after apply)
+      + is_enabled                         = true
+      + key_id                             = (known after apply)
+      + key_usage                          = "ENCRYPT_DECRYPT"
+      + multi_region                       = (known after apply)
+      + policy                             = (known after apply)
+      + region                             = "ap-northeast-1"
+      + rotation_period_in_days            = (known after apply)
+      + tags                               = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-kms-key"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-kms-key"
+          + "Project"     = "ProjectL"
+        }
+    }
+
+  # module.lambda_processor1.aws_lambda_event_source_mapping.sqs[0] will be created
+  + resource "aws_lambda_event_source_mapping" "sqs" {
+      + arn                                = (known after apply)
+      + batch_size                         = 10
+      + enabled                            = true
+      + event_source_arn                   = (known after apply)
+      + function_arn                       = (known after apply)
+      + function_name                      = (known after apply)
+      + id                                 = (known after apply)
+      + last_modified                      = (known after apply)
+      + last_processing_result             = (known after apply)
+      + maximum_batching_window_in_seconds = 0
+      + maximum_record_age_in_seconds      = (known after apply)
+      + maximum_retry_attempts             = (known after apply)
+      + parallelization_factor             = (known after apply)
+      + region                             = "ap-northeast-1"
+      + state                              = (known after apply)
+      + state_transition_reason            = (known after apply)
+      + tags_all                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + uuid                               = (known after apply)
+
+      + amazon_managed_kafka_event_source_config (known after apply)
+
+      + scaling_config {
+          + maximum_concurrency = 10
+        }
+
+      + self_managed_kafka_event_source_config (known after apply)
+    }
+
+  # module.lambda_processor2.aws_lambda_event_source_mapping.sqs[0] will be created
+  + resource "aws_lambda_event_source_mapping" "sqs" {
+      + arn                                = (known after apply)
+      + batch_size                         = 10
+      + enabled                            = true
+      + event_source_arn                   = (known after apply)
+      + function_arn                       = (known after apply)
+      + function_name                      = (known after apply)
+      + id                                 = (known after apply)
+      + last_modified                      = (known after apply)
+      + last_processing_result             = (known after apply)
+      + maximum_batching_window_in_seconds = 0
+      + maximum_record_age_in_seconds      = (known after apply)
+      + maximum_retry_attempts             = (known after apply)
+      + parallelization_factor             = (known after apply)
+      + region                             = "ap-northeast-1"
+      + state                              = (known after apply)
+      + state_transition_reason            = (known after apply)
+      + tags_all                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + uuid                               = (known after apply)
+
+      + amazon_managed_kafka_event_source_config (known after apply)
+
+      + scaling_config {
+          + maximum_concurrency = 10
+        }
+
+      + self_managed_kafka_event_source_config (known after apply)
+    }
+
+  # module.lambda_sg.aws_security_group_rule.additional_egress["to-sqs-endpoint"] will be created
+  + resource "aws_security_group_rule" "additional_egress" {
+      + description              = "SQS VPC Endpoint access"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + region                   = "ap-northeast-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "egress"
+    }
+
+  # module.lambda_subnets.aws_route_table_association.this["lambda-0"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.lambda_subnets.aws_route_table_association.this["lambda-1"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.lambda_subnets.aws_route_table_association.this["lambda-2"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.lambda_subnets.aws_subnet.this["lambda-0"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.70.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-0-ap-northeast-1a"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-0-ap-northeast-1a"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.lambda_subnets.aws_subnet.this["lambda-1"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1c"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.71.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-1-ap-northeast-1c"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-1-ap-northeast-1c"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.lambda_subnets.aws_subnet.this["lambda-2"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1d"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.72.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-2-ap-northeast-1d"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-2-ap-northeast-1d"
+          + "Project"     = "ProjectL"
+          + "Type"        = "Lambda"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.s3_lambda_output.aws_s3_bucket_policy.this will be created
+  + resource "aws_s3_bucket_policy" "this" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + policy = (known after apply)
+      + region = "ap-northeast-1"
+    }
+
+  # module.sqs_endpoint_sg.aws_security_group_rule.additional_ingress["from-lambda"] will be created
+  + resource "aws_security_group_rule" "additional_ingress" {
+      + description              = "Lambda to SQS Endpoint"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + region                   = "ap-northeast-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "ingress"
+    }
+
+  # module.sqs_processor1.aws_sqs_queue_policy.main[0] will be created
+  + resource "aws_sqs_queue_policy" "main" {
+      + id        = (known after apply)
+      + policy    = (known after apply)
+      + queue_url = (known after apply)
+      + region    = "ap-northeast-1"
+    }
+
+  # module.sqs_processor2.aws_sqs_queue_policy.main[0] will be created
+  + resource "aws_sqs_queue_policy" "main" {
+      + id        = (known after apply)
+      + policy    = (known after apply)
+      + queue_url = (known after apply)
+      + region    = "ap-northeast-1"
+    }
+
+  # module.sqs_vpc_endpoint.aws_vpc_endpoint.this will be created
+  + resource "aws_vpc_endpoint" "this" {
+      + arn                   = (known after apply)
+      + cidr_blocks           = (known after apply)
+      + dns_entry             = (known after apply)
+      + id                    = (known after apply)
+      + ip_address_type       = (known after apply)
+      + network_interface_ids = (known after apply)
+      + owner_id              = (known after apply)
+      + policy                = (known after apply)
+      + prefix_list_id        = (known after apply)
+      + private_dns_enabled   = true
+      + region                = "ap-northeast-1"
+      + requester_managed     = (known after apply)
+      + route_table_ids       = (known after apply)
+      + security_group_ids    = (known after apply)
+      + service_name          = "com.amazonaws.ap-northeast-1.sqs"
+      + service_region        = (known after apply)
+      + state                 = (known after apply)
+      + subnet_ids            = (known after apply)
+      + tags                  = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-endpoint"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-endpoint"
+          + "Project"     = "ProjectL"
+        }
+      + vpc_endpoint_type     = "Interface"
+      + vpc_id                = "vpc-0feb3234ab2cc725e"
+
+      + dns_options (known after apply)
+
+      + subnet_configuration (known after apply)
+    }
+
+  # module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-0"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-1"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-2"] will be created
+  + resource "aws_route_table_association" "this" {
+      + id             = (known after apply)
+      + region         = "ap-northeast-1"
+      + route_table_id = "rtb-0158688ea5ef920f5"
+      + subnet_id      = (known after apply)
+    }
+
+  # module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-0"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1a"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.67.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-0-ap-northeast-1a"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-0-ap-northeast-1a"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-1"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1c"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.68.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-1-ap-northeast-1c"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-1-ap-northeast-1c"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-2"] will be created
+  + resource "aws_subnet" "this" {
+      + arn                                            = (known after apply)
+      + assign_ipv6_address_on_creation                = false
+      + availability_zone                              = "ap-northeast-1d"
+      + availability_zone_id                           = (known after apply)
+      + cidr_block                                     = "10.2.69.0/24"
+      + enable_dns64                                   = false
+      + enable_resource_name_dns_a_record_on_launch    = false
+      + enable_resource_name_dns_aaaa_record_on_launch = false
+      + id                                             = (known after apply)
+      + ipv6_cidr_block_association_id                 = (known after apply)
+      + ipv6_native                                    = false
+      + map_public_ip_on_launch                        = false
+      + owner_id                                       = (known after apply)
+      + private_dns_hostname_type_on_launch            = (known after apply)
+      + region                                         = "ap-northeast-1"
+      + tags                                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-2-ap-northeast-1d"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + tags_all                                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-vpc-endpoint-2-ap-northeast-1d"
+          + "Project"     = "ProjectL"
+          + "Type"        = "VPC-Endpoint"
+        }
+      + vpc_id                                         = "vpc-0feb3234ab2cc725e"
+    }
+
+  # module.lambda_execution_role.module.this.data.aws_iam_policy_document.inline[0] will be read during apply
+  # (config refers to values not yet known)
+ <= data "aws_iam_policy_document" "inline" {
+      + id                        = (known after apply)
+      + json                      = (known after apply)
+      + minified_json             = (known after apply)
+      + override_policy_documents = []
+      + source_policy_documents   = []
+
+      + statement {
+          + actions   = [
+              + "logs:CreateLogGroup",
+              + "logs:CreateLogStream",
+              + "logs:PutLogEvents",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + "arn:aws:logs:ap-northeast-1:571634110936:log-group:/aws/lambda/projectl-dev-lambda-*",
+            ]
+          + sid       = "CloudWatchLogsAccess"
+        }
+      + statement {
+          + actions   = [
+              + "s3:DeleteObject",
+              + "s3:GetObject",
+              + "s3:ListBucket",
+              + "s3:PutObject",
+              + "s3:PutObjectAcl",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + (known after apply),
+              + (known after apply),
+            ]
+          + sid       = "S3Access"
+        }
+      + statement {
+          + actions   = [
+              + "sqs:DeleteMessage",
+              + "sqs:GetQueueAttributes",
+              + "sqs:ReceiveMessage",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + "arn:aws:sqs:ap-northeast-1:571634110936:projectl-dev-sqs-*",
+            ]
+          + sid       = "SQSAccess"
+        }
+      + statement {
+          + actions   = [
+              + "secretsmanager:GetSecretValue",
+            ]
+          + effect    = "Allow"
+          + resources = [
+              + "arn:aws:secretsmanager:ap-northeast-1:571634110936:secret:projectl-dev-*",
+            ]
+          + sid       = "SecretsManagerAccess"
+        }
+    }
+
+  # module.lambda_execution_role.module.this.aws_iam_role.this[0] will be created
+  + resource "aws_iam_role" "this" {
+      + arn                   = (known after apply)
+      + assume_role_policy    = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "lambda.amazonaws.com"
+                        }
+                      + Sid       = "ServicePrincipal0"
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date           = (known after apply)
+      + force_detach_policies = true
+      + id                    = (known after apply)
+      + managed_policy_arns   = (known after apply)
+      + max_session_duration  = 3600
+      + name                  = (known after apply)
+      + name_prefix           = "projectl-dev-lambda-execution-role-"
+      + path                  = "/"
+      + tags                  = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + unique_id             = (known after apply)
+
+      + inline_policy (known after apply)
+    }
+
+  # module.lambda_execution_role.module.this.aws_iam_role_policy.inline[0] will be created
+  + resource "aws_iam_role_policy" "inline" {
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + name_prefix = "projectl-dev-lambda-execution-role-"
+      + policy      = (known after apply)
+      + role        = (known after apply)
+    }
+
+  # module.lambda_execution_role.module.this.aws_iam_role_policy_attachment.this["policy_0"] will be created
+  + resource "aws_iam_role_policy_attachment" "this" {
+      + id         = (known after apply)
+      + policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
+      + role       = (known after apply)
+    }
+
+  # module.lambda_processor1.module.lambda.aws_cloudwatch_log_group.lambda[0] will be created
+  + resource "aws_cloudwatch_log_group" "lambda" {
+      + arn                         = (known after apply)
+      + deletion_protection_enabled = (known after apply)
+      + id                          = (known after apply)
+      + log_group_class             = (known after apply)
+      + name                        = "/aws/lambda/projectl-dev-lambda-processor1"
+      + name_prefix                 = (known after apply)
+      + region                      = "ap-northeast-1"
+      + retention_in_days           = 30
+      + skip_destroy                = false
+      + tags                        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                    = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+    }
+
+  # module.lambda_processor1.module.lambda.aws_lambda_function.this[0] will be created
+  + resource "aws_lambda_function" "this" {
+      + architectures                  = (known after apply)
+      + arn                            = (known after apply)
+      + code_sha256                    = (known after apply)
+      + description                    = "SQS processor 1 (Node.js)"
+      + filename                       = "builds/351d3b2ec78bca940c11861bc1004bbc87581bea8ec86863f9ff61665b809ca3.zip"
+      + function_name                  = "projectl-dev-lambda-processor1"
+      + handler                        = "index.handler"
+      + id                             = (known after apply)
+      + invoke_arn                     = (known after apply)
+      + last_modified                  = (known after apply)
+      + layers                         = [
+          + "arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12",
+        ]
+      + memory_size                    = 128
+      + package_type                   = "Zip"
+      + publish                        = false
+      + qualified_arn                  = (known after apply)
+      + qualified_invoke_arn           = (known after apply)
+      + region                         = "ap-northeast-1"
+      + reserved_concurrent_executions = -1
+      + response_streaming_invoke_arn  = (known after apply)
+      + role                           = (known after apply)
+      + runtime                        = "nodejs20.x"
+      + signing_job_arn                = (known after apply)
+      + signing_profile_version_arn    = (known after apply)
+      + skip_destroy                   = false
+      + source_code_hash               = "5pqGEP+p+p1LGEBmqLUVwzYo8QN8WCEe1cq6ztV1kkM="
+      + source_code_size               = (known after apply)
+      + tags                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + timeout                        = 30
+      + version                        = (known after apply)
+
+      + environment {
+          + variables = (known after apply)
+        }
+
+      + ephemeral_storage {
+          + size = 512
+        }
+
+      + logging_config {
+          + log_format = "Text"
+          + log_group  = (known after apply)
+        }
+
+      + tracing_config (known after apply)
+
+      + vpc_config {
+          + ipv6_allowed_for_dual_stack = false
+          + security_group_ids          = (known after apply)
+          + subnet_ids                  = (known after apply)
+          + vpc_id                      = (known after apply)
+        }
+    }
+
+  # module.lambda_processor1.module.lambda.local_file.archive_plan[0] will be created
+  + resource "local_file" "archive_plan" {
+      + content              = (sensitive value)
+      + content_base64sha256 = (known after apply)
+      + content_base64sha512 = (known after apply)
+      + content_md5          = (known after apply)
+      + content_sha1         = (known after apply)
+      + content_sha256       = (known after apply)
+      + content_sha512       = (known after apply)
+      + directory_permission = "0755"
+      + file_permission      = "0644"
+      + filename             = "builds/351d3b2ec78bca940c11861bc1004bbc87581bea8ec86863f9ff61665b809ca3.plan.json"
+      + id                   = (known after apply)
+    }
+
+  # module.lambda_processor1.module.lambda.null_resource.archive[0] will be created
+  + resource "null_resource" "archive" {
+      + id       = (known after apply)
+      + triggers = {
+          + "filename"  = "builds/351d3b2ec78bca940c11861bc1004bbc87581bea8ec86863f9ff61665b809ca3.zip"
+          + "timestamp" = "1768916779669250000"
+        }
+    }
+
+  # module.lambda_processor2.module.lambda.aws_cloudwatch_log_group.lambda[0] will be created
+  + resource "aws_cloudwatch_log_group" "lambda" {
+      + arn                         = (known after apply)
+      + deletion_protection_enabled = (known after apply)
+      + id                          = (known after apply)
+      + log_group_class             = (known after apply)
+      + name                        = "/aws/lambda/projectl-dev-lambda-processor2"
+      + name_prefix                 = (known after apply)
+      + region                      = "ap-northeast-1"
+      + retention_in_days           = 30
+      + skip_destroy                = false
+      + tags                        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                    = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+    }
+
+  # module.lambda_processor2.module.lambda.aws_lambda_function.this[0] will be created
+  + resource "aws_lambda_function" "this" {
+      + architectures                  = (known after apply)
+      + arn                            = (known after apply)
+      + code_sha256                    = (known after apply)
+      + description                    = "SQS processor 2 (Python)"
+      + filename                       = "builds/8e44ac6eb9a0d93c284e9dfe7d1e182a72b5afad99139ae3391001dd3a9f8873.zip"
+      + function_name                  = "projectl-dev-lambda-processor2"
+      + handler                        = "lambda_function.lambda_handler"
+      + id                             = (known after apply)
+      + invoke_arn                     = (known after apply)
+      + last_modified                  = (known after apply)
+      + layers                         = [
+          + "arn:aws:lambda:ap-northeast-1:133490724326:layer:AWS-Parameters-and-Secrets-Lambda-Extension:12",
+        ]
+      + memory_size                    = 256
+      + package_type                   = "Zip"
+      + publish                        = false
+      + qualified_arn                  = (known after apply)
+      + qualified_invoke_arn           = (known after apply)
+      + region                         = "ap-northeast-1"
+      + reserved_concurrent_executions = -1
+      + response_streaming_invoke_arn  = (known after apply)
+      + role                           = (known after apply)
+      + runtime                        = "python3.9"
+      + signing_job_arn                = (known after apply)
+      + signing_profile_version_arn    = (known after apply)
+      + skip_destroy                   = false
+      + source_code_hash               = "KcwOGNMthkFN0OBOoifPgN4dOoler5i0c8agFYTG448="
+      + source_code_size               = (known after apply)
+      + tags                           = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                       = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + timeout                        = 60
+      + version                        = (known after apply)
+
+      + environment {
+          + variables = (known after apply)
+        }
+
+      + ephemeral_storage {
+          + size = 512
+        }
+
+      + logging_config {
+          + log_format = "Text"
+          + log_group  = (known after apply)
+        }
+
+      + tracing_config (known after apply)
+
+      + vpc_config {
+          + ipv6_allowed_for_dual_stack = false
+          + security_group_ids          = (known after apply)
+          + subnet_ids                  = (known after apply)
+          + vpc_id                      = (known after apply)
+        }
+    }
+
+  # module.lambda_processor2.module.lambda.local_file.archive_plan[0] will be created
+  + resource "local_file" "archive_plan" {
+      + content              = (sensitive value)
+      + content_base64sha256 = (known after apply)
+      + content_base64sha512 = (known after apply)
+      + content_md5          = (known after apply)
+      + content_sha1         = (known after apply)
+      + content_sha256       = (known after apply)
+      + content_sha512       = (known after apply)
+      + directory_permission = "0755"
+      + file_permission      = "0644"
+      + filename             = "builds/8e44ac6eb9a0d93c284e9dfe7d1e182a72b5afad99139ae3391001dd3a9f8873.plan.json"
+      + id                   = (known after apply)
+    }
+
+  # module.lambda_processor2.module.lambda.null_resource.archive[0] will be created
+  + resource "null_resource" "archive" {
+      + id       = (known after apply)
+      + triggers = {
+          + "filename"  = "builds/8e44ac6eb9a0d93c284e9dfe7d1e182a72b5afad99139ae3391001dd3a9f8873.zip"
+          + "timestamp" = "1768982878931673000"
+        }
+    }
+
+  # module.lambda_sg.module.this.aws_security_group.this_name_prefix[0] will be created
+  + resource "aws_security_group" "this_name_prefix" {
+      + arn                    = (known after apply)
+      + description            = "Security group for Lambda functions"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "projectl-dev-lambda-sg-"
+      + owner_id               = (known after apply)
+      + region                 = "ap-northeast-1"
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-sg"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all               = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-lambda-sg"
+          + "Project"     = "ProjectL"
+        }
+      + vpc_id                 = "vpc-0feb3234ab2cc725e"
+
+      + timeouts {
+          + create = "10m"
+          + delete = "15m"
+        }
+    }
+
+  # module.lambda_sg.module.this.aws_security_group_rule.egress_with_cidr_blocks[0] will be created
+  + resource "aws_security_group_rule" "egress_with_cidr_blocks" {
+      + cidr_blocks              = [
+          + "10.2.0.0/16",
+        ]
+      + description              = "Secrets Manager VPC Endpoint access"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + protocol                 = "tcp"
+      + region                   = "ap-northeast-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = (known after apply)
+      + to_port                  = 443
+      + type                     = "egress"
+    }
+
+  # module.lambda_sg.module.this.aws_security_group_rule.egress_with_source_security_group_id[0] will be created
+  + resource "aws_security_group_rule" "egress_with_source_security_group_id" {
+      + description              = "Aurora DB access"
+      + from_port                = 5432
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + region                   = "ap-northeast-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = "sg-026717ec7c079bed6"
+      + to_port                  = 5432
+      + type                     = "egress"
+    }
+
+  # module.s3_lambda_output.module.s3_bucket.aws_s3_bucket.this[0] will be created
+  + resource "aws_s3_bucket" "this" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "projectl-dev-lambda-output"
+      + bucket_domain_name          = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = false
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = false
+      + policy                      = (known after apply)
+      + region                      = "ap-northeast-1"
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                    = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule (known after apply)
+
+      + grant (known after apply)
+
+      + lifecycle_rule (known after apply)
+
+      + logging (known after apply)
+
+      + object_lock_configuration (known after apply)
+
+      + replication_configuration (known after apply)
+
+      + server_side_encryption_configuration (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+  # module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_public_access_block.this[0] will be created
+  + resource "aws_s3_bucket_public_access_block" "this" {
+      + block_public_acls       = true
+      + block_public_policy     = true
+      + bucket                  = (known after apply)
+      + id                      = (known after apply)
+      + ignore_public_acls      = true
+      + region                  = "ap-northeast-1"
+      + restrict_public_buckets = true
+      + skip_destroy            = true
+    }
+
+  # module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_server_side_encryption_configuration.this[0] will be created
+  + resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = "ap-northeast-1"
+
+      + rule {
+          + blocked_encryption_types = []
+
+          + apply_server_side_encryption_by_default {
+              + sse_algorithm     = "AES256"
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+  # module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_versioning.this[0] will be created
+  + resource "aws_s3_bucket_versioning" "this" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = "ap-northeast-1"
+
+      + versioning_configuration {
+          + mfa_delete = (known after apply)
+          + status     = "Suspended"
+        }
+    }
+
+  # module.sqs_endpoint_sg.module.this.aws_security_group.this_name_prefix[0] will be created
+  + resource "aws_security_group" "this_name_prefix" {
+      + arn                    = (known after apply)
+      + description            = "Security group for SQS VPC Endpoint"
+      + egress                 = (known after apply)
+      + id                     = (known after apply)
+      + ingress                = (known after apply)
+      + name                   = (known after apply)
+      + name_prefix            = "projectl-dev-sqs-endpoint-sg-"
+      + owner_id               = (known after apply)
+      + region                 = "ap-northeast-1"
+      + revoke_rules_on_delete = false
+      + tags                   = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-endpoint-sg"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all               = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "projectl-dev-sqs-endpoint-sg"
+          + "Project"     = "ProjectL"
+        }
+      + vpc_id                 = "vpc-0feb3234ab2cc725e"
+
+      + timeouts {
+          + create = "10m"
+          + delete = "15m"
+        }
+    }
+
+  # module.sqs_endpoint_sg.module.this.aws_security_group_rule.ingress_with_source_security_group_id[0] will be created
+  + resource "aws_security_group_rule" "ingress_with_source_security_group_id" {
+      + description              = "ROSA Worker Node to SQS Endpoint"
+      + from_port                = 443
+      + id                       = (known after apply)
+      + prefix_list_ids          = []
+      + protocol                 = "tcp"
+      + region                   = "ap-northeast-1"
+      + security_group_id        = (known after apply)
+      + security_group_rule_id   = (known after apply)
+      + self                     = false
+      + source_security_group_id = "sg-0c084869ee28a5305"
+      + to_port                  = 443
+      + type                     = "ingress"
+    }
+
+  # module.sqs_processor1.module.dlq[0].aws_sqs_queue.this[0] will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = 300
+      + kms_master_key_id                 = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 1209600
+      + name                              = "projectl-dev-sqs-processor1-dlq"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + redrive_allow_policy              = (known after apply)
+      + redrive_policy                    = (known after apply)
+      + region                            = "ap-northeast-1"
+      + sqs_managed_sse_enabled           = (known after apply)
+      + tags                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 30
+    }
+
+  # module.sqs_processor1.module.sqs.aws_sqs_queue.this[0] will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = 300
+      + kms_master_key_id                 = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 345600
+      + name                              = "projectl-dev-sqs-processor1"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + redrive_allow_policy              = (known after apply)
+      + redrive_policy                    = (known after apply)
+      + region                            = "ap-northeast-1"
+      + sqs_managed_sse_enabled           = (known after apply)
+      + tags                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 30
+    }
+
+  # module.sqs_processor1.module.sqs.aws_sqs_queue_redrive_policy.this[0] will be created
+  + resource "aws_sqs_queue_redrive_policy" "this" {
+      + id             = (known after apply)
+      + queue_url      = (known after apply)
+      + redrive_policy = (known after apply)
+      + region         = "ap-northeast-1"
+    }
+
+  # module.sqs_processor2.module.dlq[0].aws_sqs_queue.this[0] will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = 300
+      + kms_master_key_id                 = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 1209600
+      + name                              = "projectl-dev-sqs-processor2-dlq"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + redrive_allow_policy              = (known after apply)
+      + redrive_policy                    = (known after apply)
+      + region                            = "ap-northeast-1"
+      + sqs_managed_sse_enabled           = (known after apply)
+      + tags                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 30
+    }
+
+  # module.sqs_processor2.module.sqs.aws_sqs_queue.this[0] will be created
+  + resource "aws_sqs_queue" "this" {
+      + arn                               = (known after apply)
+      + content_based_deduplication       = false
+      + deduplication_scope               = (known after apply)
+      + delay_seconds                     = 0
+      + fifo_queue                        = false
+      + fifo_throughput_limit             = (known after apply)
+      + id                                = (known after apply)
+      + kms_data_key_reuse_period_seconds = 300
+      + kms_master_key_id                 = (known after apply)
+      + max_message_size                  = 262144
+      + message_retention_seconds         = 345600
+      + name                              = "projectl-dev-sqs-processor2"
+      + name_prefix                       = (known after apply)
+      + policy                            = (known after apply)
+      + receive_wait_time_seconds         = 0
+      + redrive_allow_policy              = (known after apply)
+      + redrive_policy                    = (known after apply)
+      + region                            = "ap-northeast-1"
+      + sqs_managed_sse_enabled           = (known after apply)
+      + tags                              = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + tags_all                          = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Project"     = "ProjectL"
+        }
+      + url                               = (known after apply)
+      + visibility_timeout_seconds        = 360
+    }
+
+  # module.sqs_processor2.module.sqs.aws_sqs_queue_redrive_policy.this[0] will be created
+  + resource "aws_sqs_queue_redrive_policy" "this" {
+      + id             = (known after apply)
+      + queue_url      = (known after apply)
+      + redrive_policy = (known after apply)
+      + region         = "ap-northeast-1"
+    }
+
+Plan: 47 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + dlq_urls                     = {
+      + processor1 = (known after apply)
+      + processor2 = (known after apply)
+    }
+  + lambda_execution_role_arn    = (known after apply)
+  + lambda_function_arns         = {
+      + processor1 = (known after apply)
+      + processor2 = (known after apply)
+    }
+  + lambda_function_names        = {
+      + processor1 = "projectl-dev-lambda-processor1"
+      + processor2 = "projectl-dev-lambda-processor2"
+    }
+  + lambda_log_group_names       = {
+      + processor1 = "/aws/lambda/projectl-dev-lambda-processor1"
+      + processor2 = "/aws/lambda/projectl-dev-lambda-processor2"
+    }
+  + lambda_sg_id                 = (known after apply)
+  + lambda_subnet_ids            = [
+      + (known after apply),
+      + (known after apply),
+      + (known after apply),
+    ]
+  + s3_lambda_output_bucket_arn  = (known after apply)
+  + s3_lambda_output_bucket_name = (known after apply)
+  + sqs_endpoint_sg_id           = (known after apply)
+  + sqs_queue_arns               = {
+      + processor1 = (known after apply)
+      + processor2 = (known after apply)
+    }
+  + sqs_queue_urls               = {
+      + processor1 = (known after apply)
+      + processor2 = (known after apply)
+    }
+  + sqs_vpc_endpoint_id          = (known after apply)
+  + vpc_endpoint_subnet_ids      = [
+      + (known after apply),
+      + (known after apply),
+      + (known after apply),
+    ]
+
+─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: plan.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "plan.tfplan"
+[devuser@848ae3cb09f9 dev]$ terraform apply plan.tfplan
+module.lambda_processor2.module.lambda.local_file.archive_plan[0]: Creating...
+module.lambda_processor2.module.lambda.local_file.archive_plan[0]: Creation complete after 0s [id=187e098d825cdd58db6786ca39bfc5c124826426]
+module.lambda_processor1.module.lambda.local_file.archive_plan[0]: Creating...
+module.lambda_processor2.module.lambda.null_resource.archive[0]: Creating...
+module.lambda_processor1.module.lambda.local_file.archive_plan[0]: Creation complete after 0s [id=a47f91bb9f49580d233cb5110042a974e6617760]
+module.lambda_processor2.module.lambda.null_resource.archive[0]: Provisioning with 'local-exec'...
+module.lambda_processor2.module.lambda.null_resource.archive[0] (local-exec): local-exec: Executing: Suppressed by quiet=true
+module.lambda_processor1.module.lambda.null_resource.archive[0]: Creating...
+module.lambda_processor1.module.lambda.null_resource.archive[0]: Provisioning with 'local-exec'...
+module.lambda_processor1.module.lambda.null_resource.archive[0] (local-exec): local-exec: Executing: Suppressed by quiet=true
+module.lambda_processor2.module.lambda.null_resource.archive[0] (local-exec): Reused: builds/8e44ac6eb9a0d93c284e9dfe7d1e182a72b5afad99139ae3391001dd3a9f8873.zip
+module.lambda_processor1.module.lambda.null_resource.archive[0] (local-exec): Reused: builds/351d3b2ec78bca940c11861bc1004bbc87581bea8ec86863f9ff61665b809ca3.zip
+module.lambda_processor2.module.lambda.null_resource.archive[0]: Creation complete after 0s [id=7267258969553694909]
+module.lambda_processor1.module.lambda.null_resource.archive[0]: Creation complete after 0s [id=5574419286566250298]
+module.lambda_execution_role.module.this.aws_iam_role.this[0]: Creating...
+module.lambda_processor1.module.lambda.aws_cloudwatch_log_group.lambda[0]: Creating...
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-1"]: Creating...
+module.lambda_subnets.aws_subnet.this["lambda-2"]: Creating...
+aws_kms_key.sqs: Creating...
+module.lambda_sg.module.this.aws_security_group.this_name_prefix[0]: Creating...
+module.sqs_endpoint_sg.module.this.aws_security_group.this_name_prefix[0]: Creating...
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-2"]: Creating...
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket.this[0]: Creating...
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-0"]: Creating...
+module.lambda_processor1.module.lambda.aws_cloudwatch_log_group.lambda[0]: Creation complete after 0s [id=/aws/lambda/projectl-dev-lambda-processor1]
+module.lambda_subnets.aws_subnet.this["lambda-1"]: Creating...
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-1"]: Creation complete after 1s [id=subnet-09860724b321908c2]
+module.lambda_subnets.aws_subnet.this["lambda-0"]: Creating...
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-2"]: Creation complete after 1s [id=subnet-02c73bc44b34eb7a3]
+module.lambda_processor2.module.lambda.aws_cloudwatch_log_group.lambda[0]: Creating...
+module.lambda_processor2.module.lambda.aws_cloudwatch_log_group.lambda[0]: Creation complete after 0s [id=/aws/lambda/projectl-dev-lambda-processor2]
+module.lambda_subnets.aws_subnet.this["lambda-1"]: Creation complete after 1s [id=subnet-0f30f4079afd236c9]
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket.this[0]: Creation complete after 1s [id=projectl-dev-lambda-output]
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_public_access_block.this[0]: Creating...
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_versioning.this[0]: Creating...
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_server_side_encryption_configuration.this[0]: Creating...
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_public_access_block.this[0]: Creation complete after 0s [id=projectl-dev-lambda-output]
+module.lambda_execution_role.module.this.data.aws_iam_policy_document.inline[0]: Reading...
+module.lambda_execution_role.module.this.data.aws_iam_policy_document.inline[0]: Read complete after 0s [id=1900143160]
+module.lambda_execution_role.module.this.aws_iam_role.this[0]: Creation complete after 2s [id=projectl-dev-lambda-execution-role-20260121155801214000000003]
+module.lambda_execution_role.module.this.aws_iam_role_policy_attachment.this["policy_0"]: Creating...
+module.lambda_execution_role.module.this.aws_iam_role_policy.inline[0]: Creating...
+module.lambda_subnets.aws_subnet.this["lambda-0"]: Creation complete after 1s [id=subnet-0d6d3f6a1c0292cb9]
+module.s3_lambda_output.aws_s3_bucket_policy.this: Creating...
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_server_side_encryption_configuration.this[0]: Creation complete after 1s [id=projectl-dev-lambda-output]
+module.sqs_endpoint_sg.module.this.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-0e2cc85015ef88fda]
+module.sqs_endpoint_sg.module.this.aws_security_group_rule.ingress_with_source_security_group_id[0]: Creating...
+module.lambda_sg.module.this.aws_security_group.this_name_prefix[0]: Creation complete after 2s [id=sg-07400decd4b845bb0]
+module.lambda_sg.module.this.aws_security_group_rule.egress_with_source_security_group_id[0]: Creating...
+module.lambda_sg.module.this.aws_security_group_rule.egress_with_cidr_blocks[0]: Creating...
+module.lambda_execution_role.module.this.aws_iam_role_policy_attachment.this["policy_0"]: Creation complete after 0s [id=projectl-dev-lambda-execution-role-20260121155801214000000003/arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole]
+module.lambda_sg.aws_security_group_rule.additional_egress["to-sqs-endpoint"]: Creating...
+module.sqs_endpoint_sg.module.this.aws_security_group_rule.ingress_with_source_security_group_id[0]: Creation complete after 1s [id=sgrule-3021846230]
+module.sqs_endpoint_sg.aws_security_group_rule.additional_ingress["from-lambda"]: Creating...
+module.lambda_sg.module.this.aws_security_group_rule.egress_with_source_security_group_id[0]: Creation complete after 1s [id=sgrule-507644062]
+module.lambda_execution_role.module.this.aws_iam_role_policy.inline[0]: Creation complete after 1s [id=projectl-dev-lambda-execution-role-20260121155801214000000003:projectl-dev-lambda-execution-role-20260121155802600400000004]
+module.s3_lambda_output.module.s3_bucket.aws_s3_bucket_versioning.this[0]: Creation complete after 2s [id=projectl-dev-lambda-output]
+module.sqs_endpoint_sg.aws_security_group_rule.additional_ingress["from-lambda"]: Creation complete after 0s [id=sgrule-945124672]
+module.lambda_sg.module.this.aws_security_group_rule.egress_with_cidr_blocks[0]: Creation complete after 1s [id=sgrule-2380485624]
+module.lambda_subnets.aws_subnet.this["lambda-2"]: Creation complete after 4s [id=subnet-0a3fa9d7529510786]
+module.lambda_subnets.aws_route_table_association.this["lambda-2"]: Creating...
+module.lambda_subnets.aws_route_table_association.this["lambda-1"]: Creating...
+module.lambda_subnets.aws_route_table_association.this["lambda-0"]: Creating...
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Creating...
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Creating...
+module.lambda_subnets.aws_route_table_association.this["lambda-0"]: Creation complete after 0s [id=rtbassoc-0fe610b572862e5c5]
+module.lambda_subnets.aws_route_table_association.this["lambda-1"]: Creation complete after 0s [id=rtbassoc-0b3b78245e84a54f5]
+module.lambda_subnets.aws_route_table_association.this["lambda-2"]: Creation complete after 0s [id=rtbassoc-04b15a2ee1cd343ab]
+module.lambda_sg.aws_security_group_rule.additional_egress["to-sqs-endpoint"]: Creation complete after 2s [id=sgrule-1992925628]
+module.vpc_endpoint_subnets.aws_subnet.this["vpc-endpoint-0"]: Creation complete after 4s [id=subnet-0e2b7b7b2654ef794]
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-2"]: Creating...
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-0"]: Creating...
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-1"]: Creating...
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Creating...
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-1"]: Creation complete after 1s [id=rtbassoc-0de6c3b8283f76f32]
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-2"]: Creation complete after 1s [id=rtbassoc-05a8b3e1b0f554d9a]
+module.vpc_endpoint_subnets.aws_route_table_association.this["vpc-endpoint-0"]: Creation complete after 1s [id=rtbassoc-050461504e46854d5]
+aws_kms_key.sqs: Creation complete after 9s [id=765fec5f-9ef8-47c7-a296-d918abb3d3f3]
+module.sqs_processor1.module.dlq[0].aws_sqs_queue.this[0]: Creating...
+module.sqs_processor1.module.sqs.aws_sqs_queue.this[0]: Creating...
+module.sqs_processor2.module.dlq[0].aws_sqs_queue.this[0]: Creating...
+module.sqs_processor2.module.sqs.aws_sqs_queue.this[0]: Creating...
+module.s3_lambda_output.aws_s3_bucket_policy.this: Still creating... [00m10s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [00m10s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [00m10s elapsed]
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Still creating... [00m10s elapsed]
+module.s3_lambda_output.aws_s3_bucket_policy.this: Creation complete after 16s [id=projectl-dev-lambda-output]
+module.sqs_processor2.module.sqs.aws_sqs_queue.this[0]: Still creating... [00m10s elapsed]
+module.sqs_processor1.module.dlq[0].aws_sqs_queue.this[0]: Still creating... [00m10s elapsed]
+module.sqs_processor1.module.sqs.aws_sqs_queue.this[0]: Still creating... [00m10s elapsed]
+module.sqs_processor2.module.dlq[0].aws_sqs_queue.this[0]: Still creating... [00m10s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [00m20s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [00m20s elapsed]
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Still creating... [00m20s elapsed]
+module.sqs_processor2.module.dlq[0].aws_sqs_queue.this[0]: Still creating... [00m20s elapsed]
+module.sqs_processor1.module.dlq[0].aws_sqs_queue.this[0]: Still creating... [00m20s elapsed]
+module.sqs_processor1.module.sqs.aws_sqs_queue.this[0]: Still creating... [00m20s elapsed]
+module.sqs_processor2.module.sqs.aws_sqs_queue.this[0]: Still creating... [00m20s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [00m30s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [00m30s elapsed]
+module.sqs_processor1.module.dlq[0].aws_sqs_queue.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1-dlq]
+module.sqs_processor2.module.sqs.aws_sqs_queue.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2]
+module.sqs_processor2.module.dlq[0].aws_sqs_queue.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2-dlq]
+module.sqs_processor1.module.sqs.aws_sqs_queue.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1]
+module.sqs_processor2.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Creating...
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Creating...
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Creating...
+module.sqs_processor1.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Creating...
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Still creating... [00m30s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [00m40s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [00m40s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [00m10s elapsed]
+module.sqs_processor2.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Still creating... [00m10s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [00m10s elapsed]
+module.sqs_processor1.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Still creating... [00m10s elapsed]
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Still creating... [00m40s elapsed]
+module.sqs_vpc_endpoint.aws_vpc_endpoint.this: Creation complete after 43s [id=vpce-0ad0984a820c399f3]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [00m50s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [00m50s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [00m20s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [00m20s elapsed]
+module.sqs_processor2.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Still creating... [00m20s elapsed]
+module.sqs_processor1.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Still creating... [00m20s elapsed]
+module.sqs_processor1.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1]
+module.sqs_processor2.module.sqs.aws_sqs_queue_redrive_policy.this[0]: Creation complete after 25s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m00s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m00s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [00m30s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [00m30s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m10s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m10s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [00m40s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [00m40s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m20s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m20s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [00m50s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [00m50s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m30s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m30s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [01m00s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [01m00s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m40s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m40s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Still creating... [01m10s elapsed]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Still creating... [01m10s elapsed]
+module.sqs_processor2.aws_sqs_queue_policy.main[0]: Creation complete after 1m10s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2]
+module.sqs_processor1.aws_sqs_queue_policy.main[0]: Creation complete after 1m10s [id=https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [01m50s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [01m50s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [02m00s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [02m00s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [02m10s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [02m10s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Still creating... [02m20s elapsed]
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Still creating... [02m20s elapsed]
+module.lambda_processor2.module.lambda.aws_lambda_function.this[0]: Creation complete after 2m21s [id=projectl-dev-lambda-processor2]
+module.lambda_processor2.aws_lambda_event_source_mapping.sqs[0]: Creating...
+module.lambda_processor1.module.lambda.aws_lambda_function.this[0]: Creation complete after 2m29s [id=projectl-dev-lambda-processor1]
+module.lambda_processor1.aws_lambda_event_source_mapping.sqs[0]: Creating...
+module.lambda_processor2.aws_lambda_event_source_mapping.sqs[0]: Still creating... [00m10s elapsed]
+module.lambda_processor1.aws_lambda_event_source_mapping.sqs[0]: Still creating... [00m10s elapsed]
+module.lambda_processor2.aws_lambda_event_source_mapping.sqs[0]: Still creating... [00m20s elapsed]
+module.lambda_processor2.aws_lambda_event_source_mapping.sqs[0]: Creation complete after 25s [id=10102961-a3fc-46e0-81f8-9bd88e6fe713]
+module.lambda_processor1.aws_lambda_event_source_mapping.sqs[0]: Still creating... [00m20s elapsed]
+module.lambda_processor1.aws_lambda_event_source_mapping.sqs[0]: Creation complete after 24s [id=0680bc43-bcb9-4405-8ba7-a29f98b752ce]
+
+Apply complete! Resources: 47 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+dlq_urls = {
+  "processor1" = "https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1-dlq"
+  "processor2" = "https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2-dlq"
+}
+lambda_execution_role_arn = "arn:aws:iam::571634110936:role/projectl-dev-lambda-execution-role-20260121155801214000000003"
+lambda_function_arns = {
+  "processor1" = "arn:aws:lambda:ap-northeast-1:571634110936:function:projectl-dev-lambda-processor1"
+  "processor2" = "arn:aws:lambda:ap-northeast-1:571634110936:function:projectl-dev-lambda-processor2"
+}
+lambda_function_names = {
+  "processor1" = "projectl-dev-lambda-processor1"
+  "processor2" = "projectl-dev-lambda-processor2"
+}
+lambda_log_group_names = {
+  "processor1" = "/aws/lambda/projectl-dev-lambda-processor1"
+  "processor2" = "/aws/lambda/projectl-dev-lambda-processor2"
+}
+lambda_sg_id = "sg-07400decd4b845bb0"
+lambda_subnet_ids = [
+  "subnet-0d6d3f6a1c0292cb9",
+  "subnet-0f30f4079afd236c9",
+  "subnet-0a3fa9d7529510786",
+]
+s3_lambda_output_bucket_arn = "arn:aws:s3:::projectl-dev-lambda-output"
+s3_lambda_output_bucket_name = "projectl-dev-lambda-output"
+sqs_endpoint_sg_id = "sg-0e2cc85015ef88fda"
+sqs_queue_arns = {
+  "processor1" = "arn:aws:sqs:ap-northeast-1:571634110936:projectl-dev-sqs-processor1"
+  "processor2" = "arn:aws:sqs:ap-northeast-1:571634110936:projectl-dev-sqs-processor2"
+}
+sqs_queue_urls = {
+  "processor1" = "https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor1"
+  "processor2" = "https://sqs.ap-northeast-1.amazonaws.com/571634110936/projectl-dev-sqs-processor2"
+}
+sqs_vpc_endpoint_id = "vpce-0ad0984a820c399f3"
+vpc_endpoint_subnet_ids = [
+  "subnet-0e2b7b7b2654ef794",
+  "subnet-09860724b321908c2",
+  "subnet-02c73bc44b34eb7a3",
+]
+[devuser@848ae3cb09f9 dev]$ 
