@@ -182,6 +182,14 @@ module "lambda_execution_role" {
         "logs:PutLogEvents"
       ]
       resources = ["arn:aws:logs:${var.region}:${data.aws_caller_identity.current.account_id}:log-group:/aws/lambda/${local.name_prefix}-lambda-*"]
+    },
+    {
+      sid = "KMSDecryptForSQS"
+      actions = [
+        "kms:Decrypt",
+        "kms:GenerateDataKey"
+      ]
+      resources = [aws_kms_key.sqs.arn]
     }
   ]
 
@@ -196,6 +204,10 @@ resource "aws_kms_key" "sqs" {
   description             = var.kms_key_description
   deletion_window_in_days = var.kms_key_deletion_window_in_days
   enable_key_rotation     = var.kms_key_enable_rotation
+
+  policy = templatefile("${path.module}/policies/projectl-sqs-kms-key-policy.json", {
+    account_id = data.aws_caller_identity.current.account_id
+  })
 
   tags = merge(local.common_tags, {
     Name = "${local.name_prefix}-sqs-kms-key"
