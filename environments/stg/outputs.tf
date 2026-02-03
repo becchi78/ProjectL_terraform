@@ -60,6 +60,16 @@ output "sqs_vpc_endpoint_id" {
   value       = module.sqs_vpc_endpoint.id
 }
 
+output "cloudwatch_logs_vpc_endpoint_id" {
+  description = "CloudWatch Logs VPC EndpointのID"
+  value       = module.cloudwatch_logs_vpc_endpoint.id
+}
+
+output "cloudwatch_logs_endpoint_sg_id" {
+  description = "CloudWatch Logs Endpoint Security GroupのID"
+  value       = module.cloudwatch_logs_endpoint_sg.security_group_id
+}
+
 # Lambda
 output "lambda_function_arns" {
   description = "Lambda関数のARNマップ"

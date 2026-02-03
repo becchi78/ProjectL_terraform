@@ -1,0 +1,57 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowROSAPodAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "arn:aws:logs:${region}:${account_id}:log-group:*",
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "${rosa_pod_iam_role_arn}"
+        }
+      }
+    },
+    {
+      "Sid": "AllowLambdaAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:${region}:${account_id}:log-group:/aws/lambda/${name_prefix}-lambda-*",
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "${lambda_execution_role_arn}"
+        }
+      }
+    },
+    {
+      "Sid": "AllowAuroraMonitoringAccess",
+      "Effect": "Allow",
+      "Principal": "*",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents",
+        "logs:DescribeLogGroups",
+        "logs:DescribeLogStreams"
+      ],
+      "Resource": "arn:aws:logs:${region}:${account_id}:log-group:*",
+      "Condition": {
+        "ArnEquals": {
+          "aws:PrincipalArn": "${aurora_monitoring_role_arn}"
+        }
+      }
+    }
+  ]
+}

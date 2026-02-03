@@ -57,6 +57,11 @@ variable "aurora_port" {
   default     = 5432
 }
 
+variable "aurora_monitoring_role_arn" {
+  description = "Aurora Enhanced Monitoring用IAM RoleのARN"
+  type        = string
+}
+
 # ROSA
 variable "worker_node_sg_id" {
   description = "Worker Node Security GroupのID"

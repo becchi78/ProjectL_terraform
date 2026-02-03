@@ -15,8 +15,9 @@ vpc_endpoint_subnet_cidrs = ["10.2.67.0/24", "10.2.68.0/24","10.2.69.0/24"]
 private_route_table_ids   = ["rtb-0158688ea5ef920f5"]
 
 # Aurora
-aurora_sg_id = "sg-026717ec7c079bed6"
-aurora_port  = 5432
+aurora_sg_id              = "sg-026717ec7c079bed6"
+aurora_port               = 5432
+aurora_monitoring_role_arn = "arn:aws:iam::123456789012:role/rds-monitoring-role"
 
 # ROSA
 worker_node_sg_id     = "sg-0c084869ee28a5305"

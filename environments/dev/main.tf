@@ -81,7 +81,7 @@ module "lambda_sg" {
     }
   ]
 
-  # SQS Endpoint SGへのEgressは後で追加 (循環参照回避)
+  # SQS/CloudWatch Logs Endpoint SGへのEgressは後で追加 (循環参照回避)
   additional_egress_rules = {
     "to-sqs-endpoint" = {
       from_port                = 443
@@ -89,6 +89,13 @@ module "lambda_sg" {
       protocol                 = "tcp"
       source_security_group_id = module.sqs_endpoint_sg.security_group_id
       description              = "SQS VPC Endpoint access"
+    }
+    "to-cloudwatch-logs-endpoint" = {
+      from_port                = 443
+      to_port                  = 443
+      protocol                 = "tcp"
+      source_security_group_id = module.cloudwatch_logs_endpoint_sg.security_group_id
+      description              = "CloudWatch Logs VPC Endpoint access"
     }
   }
 
@@ -327,6 +334,77 @@ module "sqs_vpc_endpoint" {
     rosa_pod_iam_role_arn     = var.rosa_pod_iam_role_arn
     lambda_execution_role_arn = module.lambda_execution_role.role_arn
     sqs_resource_arn          = "arn:aws:sqs:${var.region}:${data.aws_caller_identity.current.account_id}:${local.name_prefix}-sqs-*"
+  })
+
+  tags = local.common_tags
+}
+
+# -----------------------------------------------------------------------------
+# Security Group - CloudWatch Logs VPC Endpoint用
+# -----------------------------------------------------------------------------
+
+module "cloudwatch_logs_endpoint_sg" {
+  source = "../../modules/security-group"
+
+  name        = "${local.name_prefix}-cwlogs-endpoint-sg"
+  description = "Security group for CloudWatch Logs VPC Endpoint"
+  vpc_id      = var.vpc_id
+
+  ingress_with_source_security_group_id = [
+    {
+      description              = "ROSA Worker Node to CloudWatch Logs Endpoint"
+      from_port                = 443
+      to_port                  = 443
+      protocol                 = "tcp"
+      source_security_group_id = var.worker_node_sg_id
+    },
+    {
+      description              = "Aurora to CloudWatch Logs Endpoint"
+      from_port                = 443
+      to_port                  = 443
+      protocol                 = "tcp"
+      source_security_group_id = var.aurora_sg_id
+    }
+  ]
+
+  # Lambda SGからのIngressは後で追加 (循環参照回避)
+  additional_ingress_rules = {
+    "from-lambda" = {
+      from_port                = 443
+      to_port                  = 443
+      protocol                 = "tcp"
+      source_security_group_id = module.lambda_sg.security_group_id
+      description              = "Lambda to CloudWatch Logs Endpoint"
+    }
+  }
+
+  tags = local.common_tags
+}
+
+# -----------------------------------------------------------------------------
+# VPC Endpoint - CloudWatch Logs
+# -----------------------------------------------------------------------------
+
+module "cloudwatch_logs_vpc_endpoint" {
+  source = "../../modules/vpc-endpoint"
+
+  name         = "${local.name_prefix}-cwlogs-endpoint"
+  vpc_id       = var.vpc_id
+  service_name = "com.amazonaws.${var.region}.logs"
+
+  vpc_endpoint_type   = "Interface"
+  subnet_ids          = values(module.vpc_endpoint_subnets.subnet_ids)
+  security_group_ids  = [module.cloudwatch_logs_endpoint_sg.security_group_id]
+  private_dns_enabled = true
+
+  # VPC Endpointポリシー
+  policy = templatefile("${path.module}/policies/projectl-cloudwatch-logs-vpc-endpoint-policy.json", {
+    rosa_pod_iam_role_arn     = var.rosa_pod_iam_role_arn
+    lambda_execution_role_arn = module.lambda_execution_role.role_arn
+    aurora_monitoring_role_arn = var.aurora_monitoring_role_arn
+    region                    = var.region
+    account_id                = data.aws_caller_identity.current.account_id
+    name_prefix               = local.name_prefix
   })
 
   tags = local.common_tags
